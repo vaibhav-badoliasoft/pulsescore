@@ -1,0 +1,20 @@
+{
+  "model_version": "v0.1-baseline-tfidf-logreg",
+  "dataset": "glue/sst2",
+  "val_accuracy": 0.8084862385321101,
+  "val_f1": 0.8202368137782562,
+  "confusion_matrix": [
+    [
+      324,
+      104
+    ],
+    [
+      63,
+      381
+    ]
+  ],
+  "notes": {
+    "features": "TF-IDF (1-2 grams, english stopwords, max_features=50k)",
+    "classifier": "LogisticRegression"
+  }
+}

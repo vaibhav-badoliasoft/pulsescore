@@ -23,12 +23,12 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Logs / Data / Artifacts
+# Logs
 logs/
-data/
-artifacts/
 backend/logs/
+
+# Data
+data/
 backend/data/
-backend/artifacts/
 
 !.gitkeep
