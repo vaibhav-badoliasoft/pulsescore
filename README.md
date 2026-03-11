@@ -1,30 +1,21 @@
 # PulseScore
-
 PulseScore: Given a text input, return a sentiment label + confidence score via an API.
 
----
 
 ## What This Project Is
-
 PulseScore is an AI-focused inference system.
-
 Flow:
 Client → FastAPI → Model → Logging → Metrics → Dashboard
-
 The goal is to build a production-style ML system step by step (Step1 → Step12).
 
----
-
 ## Current Progress
-
-### ✅ Step1 — API Bootstrap
+### Step1 — API Bootstrap
 - FastAPI setup
 - `/health` endpoint working
 - `/predict` endpoint (dummy logic)
 - Repo pushed cleanly
 
-### ✅ Step2 — Baseline Model Training (Current Stage)
-
+### Step2 — Baseline Model Training
 - Dataset: SST2 (binary sentiment)
 - Model: TF-IDF (1–2 grams) + Logistic Regression
 - Artifacts saved:
@@ -32,22 +23,23 @@ The goal is to build a production-style ML system step by step (Step1 → Step12
   - `vectorizer.joblib`
   - `metrics_baseline.json`
 
-### ✅ Step3 — Real Inference API (Completed)
-- Backend loads `artifacts/model.joblib` + `artifacts/vectorizer.   joblib` on startup
-- `/predict` returns real probability-based `score` and `confidence`
-- `model_version` included in responses
+### Step3 — Real Inference API
+- Backend loads `artifacts/model.joblib` and `artifacts/vectorizer.joblib` on startup
+- `/predict` now runs real model inference
+- Uses `vectorizer.transform()` and `model.predict_proba()`
+- Returns:
+  - `label`
+  - `confidence`
+  - `score`
+  - `model_version`
+  - `request_id`
 
-### Baseline Results
-- Validation Accuracy: **0.8085**
-- Validation F1: **0.8202**
-
-This means we now have a real trained sentiment model ready to be integrated into the API.
-
----
-
-## Next Step
-
-### 🔜 Step3 — Real Inference API
-- Load model on startup
-- Replace dummy `/predict`
-- Return real probabilities
+### Step4 — Validation & Error Handling
+- Added strict request validation using **Pydantic**
+- Enforced:
+  - `text` required
+  - `text` length limits
+  - rejection of whitespace-only input
+- Added global **RequestValidationError handler**
+- Added global **fallback exception handler**
+- Standardized API error response format:
