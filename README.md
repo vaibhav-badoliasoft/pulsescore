@@ -32,6 +32,11 @@ The goal is to build a production-style ML system step by step (Step1 → Step12
   - `vectorizer.joblib`
   - `metrics_baseline.json`
 
+### ✅ Step3 — Real Inference API (Completed)
+- Backend loads `artifacts/model.joblib` + `artifacts/vectorizer.   joblib` on startup
+- `/predict` returns real probability-based `score` and `confidence`
+- `model_version` included in responses
+
 ### Baseline Results
 - Validation Accuracy: **0.8085**
 - Validation F1: **0.8202**
